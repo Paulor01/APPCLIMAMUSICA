@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>App Clima & Musica</title>
+</head>
+
+
+<body>
+    <section class="container">
+        <video class="video" autoplay muted loop>
+           <source id="video-souce" src="/assets/videos/video1.mp4" type="video/mp4"> 
+        </video>
+
+     <div class="caixa">
+        <div class="procura">
+          <button>
+            <img src="/assets/lupa.png" alt="icone-lupa">
+          </button>  
+          <input id="input-busca" placeholder="coloque o nome da cidade"  type="text">
+        </div>
+
+        <div class="envelope">
+            <div class="conteudo-clima">
+              <img class="icon-tempo" src="/assets/01d.png" alt="icone-tempo"> 
+              <h2 class="nome-cidade" >Paris</h2> 
+              <H3 class="temperatura">10°C</H3>
+
+              <p class="maxTemperatura">máx: 8°c</p>
+              <p class="minTemperatura">min: 3°c</p>
+            </div>
+        
+            <div class="conteudo-musica">
+                <img class="icone-musica" src="/assets/Musica.png" alt="musacia-icon">
+                <h2>Playlist</h2>
+
+                <ul class="playlist-caixa">
+                    <li>
+                        <img src="/assets/Music 1.png" alt="spotfy-icon">
+                        <p>Nouveautés Pop</p>
+                    </li>
+                    <li>
+                        <img src="/assets/Music 1.png" alt="spotfy-icon">
+                        <p>Nouveautés Pop</p>
+                    </li>
+                    <li>
+                        <img src="/assets/Music 1.png" alt="spotfy-icon">
+                        <p>Nouveautés Pop</p>
+                    </li>
+                </ul>
+            </div>
+     
+   
+
+        </div>
+
+     </div>
+    </section>
+    
+</body>
+</html>
