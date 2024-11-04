@@ -54,8 +54,6 @@ async function procurarCidade(city) {
             const resultado = await dados.json();
 
             mostrarClimaNaTela(resultado);
-            console.log(resultado, '<<')
-
          }else{
             throw new Error
          }     
@@ -70,7 +68,7 @@ async function procurarCidade(city) {
 }
 
 function mostrarClimaNaTela(resultado){
-    
+    document.querySelector('.icone-tempo').src = `./assets/${resultado.weather[0].icon}.png`
     document.querySelector('.nome-cidade').innerHTML = `${resultado.name}`;
     document.querySelector('.temperatura').innerHTML = `${resultado.main.temp. toFixed(0)}°C`;
     document.querySelector('.maxTemperatura').innerHTML = `máx: ${resultado.main.temp_max.toFixed(0)}°C`;
