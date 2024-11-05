@@ -1,6 +1,9 @@
 const input = document.getElementById('input-busca');
 const apiKey ='ae5702bcdb83b75ef1531de90e0ca249';
 
+const clientID ='fd3c832aac0b4d32897df79294e8f9e6';
+const clientSecret ='e5fdde66b199445fb992741730892faf';
+
 function botaoDeBusca() {
     const inputValue = input.value;
 
@@ -53,6 +56,7 @@ async function procurarCidade(city) {
          if(dados.status ===200){
             const resultado = await dados.json();
 
+            obterTopAlbunsPorPais(resultado.sys.country);
             mostrarClimaNaTela(resultado);
          }else{
             throw new Error
@@ -76,5 +80,79 @@ function mostrarClimaNaTela(resultado){
 
 }
 
+async function obterAcessoToken(){
+    const credentials =`${clientID}:${clientSecret}`;
+    const encodedCredentials = btoa (credentials);
+
+    const response = await fetch('https://accounts.spotify.com/api/token',{
+        method: 'POST',
+        headers: {
+            'Althorization': `Basic ${encodedCredentials}`,
+           'content-type' :'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credential',
+    });
+
+    const data = await response.json()
+    return data.access_Token;
+    
+}
+
+function obterDataAtual() {
+    const currentDate =  new Date();
+    const ano = currentDate.getFullYear();
+    const mes = (currentDate.getMonth()+ 1).toString().padStart(2,'0');
+    const dia = currentDate.getDate().toString().padStart(2, '0');
+
+    return `${ano} - ${mes}- ${dia}`
+}
+
+async function obterTopAlbunsPorPais(country) {
+    try {
+        const access_Token = await obterAcessoToken();
+        const dataAtual = obterDataAtual();
+
+        const url = `https://api.spotify.com/v1/browse/featured-playlists?offset=0&limit=3&locale=${country}&`
+    
+        const resultado = await fetch (`${url}`,{
+           headers:{
+            'Authorization':`Bearer ${access_Token}`
+           } ,
+        });
+
+        if(resultado.status === 200){
+            const data = await resultado.json()
+            const result = data.playlists.items.map(item =>({
+             name:item.name,
+             item:images[0].url
+            }))
+         
+           console.log(data);
+
+        }else {
+            throw new Error
+        }
+    
+      
+     
+    }catch{
+     alert ('A pesquisa de Música deu erro!')
+    }
+}
+
+const ulElement = document.querySelector ('.playlist-caixa');
+const liElement = ulElement.querySelectorAll('li');
+
+
+function mostrarCilmaNaTela(){
+ liElement.forEach((liElement,index) => {
+  const imgElement =liElement.querySelector('img');
+  const pElement =  liElement.querySelector('p') 
+
+  imgElement.src =  
+
+
+ } )
+}
 
 
